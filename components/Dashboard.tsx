@@ -14,7 +14,13 @@ import {
   Clock,
   ArrowDown,
   Eye,
-  EyeOff
+  EyeOff,
+  Gift,
+  FileText,
+  GraduationCap,
+  AlertCircle,
+  Users,
+  TrendingUp
 } from 'lucide-react';
 import { AreaChart, Area, ResponsiveContainer, CartesianGrid, XAxis, YAxis, Tooltip, BarChart, Bar, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
 import ActivityWindow from './ActivityWindow';
@@ -118,8 +124,12 @@ const Dashboard: React.FC<DashboardProps> = ({ setActiveView, triggerQuery }) =>
                 <div className="relative bg-white rounded-2xl flex items-center shadow-xl shadow-slate-200/50 overflow-hidden ring-1 ring-slate-100">
                     
                     {/* Animated Icon */}
-                    <div className="pl-5 pr-3 text-slate-400">
-                       <Sparkles className={`w-6 h-6 ${isSearchFocused ? 'text-purple-600 animate-pulse' : 'text-slate-400'}`} />
+                    <div className="pl-5 pr-3 flex items-center justify-center">
+                       <img 
+                          src={BRAND_LOGO}
+                          alt="AI Cat"
+                          className={`w-7 h-7 object-contain transition-all duration-500 ${isSearchFocused ? 'scale-110 -rotate-12 filter-none' : 'grayscale opacity-40'}`}
+                       />
                     </div>
 
                     {/* The Input */}
@@ -171,111 +181,222 @@ const Dashboard: React.FC<DashboardProps> = ({ setActiveView, triggerQuery }) =>
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-8 scroll-smooth">
-          <div className="max-w-6xl mx-auto flex flex-col gap-10 pb-20">
-            
-            {/* Page Controls */}
-            <div className="flex justify-end -mb-4 z-10 relative">
-               <button 
-                    onClick={() => setShowToday(!showToday)}
-                    className="flex items-center gap-2 px-3 py-1.5 text-xs font-bold text-slate-500 hover:text-slate-800 bg-white border border-slate-200 rounded-lg shadow-sm transition-all hover:bg-slate-50"
-                >
-                    {showToday ? (
-                        <>
-                            <EyeOff className="w-3.5 h-3.5" />
-                            <span>Hide Today</span>
-                        </>
-                    ) : (
-                        <>
-                            <Eye className="w-3.5 h-3.5" />
-                            <span>Show Today</span>
-                        </>
-                    )}
-                </button>
-            </div>
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth">
+          <div className="max-w-7xl mx-auto flex flex-col gap-8 pb-20">
 
-            {/* TODAY SECTION */}
-            {showToday && (
-                <section className="space-y-6 animate-in slide-in-from-top-4 duration-500">
-                    <div className="flex items-center justify-between">
-                        <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                           <Calendar className="w-5 h-5 text-slate-400" />
-                           Today's Focus
-                        </h2>
-                        <span className="text-xs font-bold text-slate-500 bg-white px-3 py-1 rounded-full border border-slate-200 shadow-sm">{new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}</span>
+            {/* SECTION 1: TODAY TASKS */}
+            <section className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/40 border border-slate-100 overflow-hidden flex flex-col animate-in slide-in-from-bottom-4 duration-700">
+                    {/* Header */}
+                    <div className="px-8 py-5 border-b border-slate-100 bg-white flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 bg-blue-50 text-blue-600 rounded-xl">
+                            <Calendar className="w-5 h-5" />
+                        </div>
+                        <h2 className="text-xl font-black text-slate-900 tracking-tight">Today Tasks</h2>
+                    </div>
+                    <div className="text-sm font-medium text-slate-400 hidden sm:block">
+                        {new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}
+                    </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                        <div 
-                            onClick={() => handleActivityClick('attendance')}
-                            className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-primary-900/5 hover:border-primary-200 transition-all cursor-pointer group relative overflow-hidden active:scale-95 duration-200"
-                        >
-                            <div className="absolute right-0 top-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                                <ArrowRight className="w-5 h-5 text-primary-500" />
+                    <div className="flex flex-col md:flex-row min-h-[300px]">
+                    {/* LEFT: IMMEDIATE */}
+                    <div className="flex-1 p-6 md:p-8 border-b md:border-b-0 md:border-r border-slate-100 relative">
+                        <div className="absolute top-0 left-0 w-1 h-full bg-blue-500/0 md:bg-blue-500/0"></div> {/* Optional accent */}
+                        
+                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-6 flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                            Immediate
+                        </h3>
+
+                        <div className="space-y-4">
+                            {/* Task 1 */}
+                            <div 
+                                onClick={() => handleActivityClick('attendance')}
+                                className="group flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-blue-900/5 hover:scale-[1.02] transition-all cursor-pointer border border-slate-100 hover:border-blue-100"
+                            >
+                                <div className="flex flex-col items-center justify-center w-14 h-14 bg-white text-blue-600 rounded-xl shrink-0 shadow-sm border border-slate-100 font-bold leading-tight">
+                                    <span>10:00</span>
+                                    <span className="text-[10px] text-slate-400">AM</span>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <h4 className="font-bold text-slate-900 truncate">Science 4B</h4>
+                                    <p className="text-sm text-slate-500 font-medium">Take Attendance</p>
+                                </div>
+                                <button className="px-4 py-2 bg-blue-600 text-white text-xs font-bold rounded-lg shadow-md shadow-blue-500/20 group-hover:bg-blue-700 transition-colors">
+                                    Start
+                                </button>
                             </div>
-                            <div className="w-12 h-12 bg-primary-50 text-primary-600 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                                <CheckCircle className="w-6 h-6" />
+
+                            {/* Task 2 */}
+                            <div className="group flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-white hover:shadow-lg hover:shadow-blue-900/5 hover:scale-[1.02] transition-all cursor-pointer border border-slate-100 hover:border-blue-100">
+                                <div className="flex flex-col items-center justify-center w-14 h-14 bg-white text-slate-400 rounded-xl shrink-0 shadow-sm border border-slate-100 font-bold leading-tight">
+                                    <span>11:00</span>
+                                    <span className="text-[10px] text-slate-400">AM</span>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <h4 className="font-bold text-slate-900 truncate">Math 3A</h4>
+                                    <p className="text-sm text-slate-500 font-medium">Take Attendance</p>
+                                </div>
+                                <button className="px-4 py-2 bg-white text-slate-600 border border-slate-200 text-xs font-bold rounded-lg group-hover:bg-slate-50 transition-colors">
+                                    Pending
+                                </button>
                             </div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-1">Take Attendance</h3>
-                            <p className="text-sm text-slate-500 font-medium mb-4">Science 4B • 10:00 AM</p>
+
+                            {/* Birthdays */}
+                            <div className="mt-2 p-4 rounded-2xl bg-gradient-to-br from-pink-50 to-orange-50 border border-pink-100 flex items-start gap-4">
+                                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-pink-500 shadow-sm shrink-0">
+                                    <Gift className="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-slate-900 text-sm mb-1">Today's Birthdays</h4>
+                                    <div className="flex flex-wrap gap-2">
+                                        <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-white border border-pink-100 text-xs font-bold text-slate-700 shadow-sm">
+                                            John Smith
+                                        </span>
+                                        <span className="inline-flex items-center px-2.5 py-1 rounded-md bg-white border border-pink-100 text-xs font-bold text-slate-700 shadow-sm">
+                                            Paul Green
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* RIGHT: NEEDED SOON */}
+                    <div className="flex-1 p-6 md:p-8 bg-slate-50/30">
+                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-6 flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-orange-400"></div>
+                            Needed Soon
+                        </h3>
+
+                        <div className="space-y-4">
+                            {/* Assignment Item */}
+                            <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+                                    <div className="flex justify-between items-start">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-orange-50 text-orange-600 rounded-lg">
+                                            <FileText className="w-4 h-4" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-slate-900 text-sm">Assignment 1 Due</h4>
+                                            <p className="text-xs text-slate-500 font-medium">Algebra I • Due 1/26</p>
+                                        </div>
+                                    </div>
+                                    <span className="px-2 py-1 bg-red-50 text-red-600 text-[10px] font-bold uppercase tracking-wider rounded-md border border-red-100">
+                                        High Prio
+                                    </span>
+                                    </div>
+                                    <div className="pl-11">
+                                        <div className="flex items-center gap-2 text-xs font-medium text-slate-600 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                        <AlertCircle className="w-3.5 h-3.5 text-orange-500" />
+                                        2 Students not submitted
+                                        </div>
+                                    </div>
+                            </div>
+
+                                {/* Grading Item */}
+                                <div className="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col gap-3">
+                                    <div className="flex justify-between items-start">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-purple-50 text-purple-600 rounded-lg">
+                                            <GraduationCap className="w-4 h-4" />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-slate-900 text-sm">Grade Entry Required</h4>
+                                            <p className="text-xs text-slate-500 font-medium">Physics Lab 4 • 24 Pending</p>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden mt-1">
+                                    <div className="h-full bg-purple-500 w-[40%] rounded-full"></div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </section>
+
+            {/* SECTION 2: ANALYTICS */}
+            <section className="bg-white rounded-[2rem] shadow-xl shadow-slate-200/40 border border-slate-100 overflow-hidden flex flex-col animate-in slide-in-from-bottom-8 duration-1000">
+                    {/* Header */}
+                    <div className="px-8 py-5 border-b border-slate-100 bg-white flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 bg-emerald-50 text-emerald-600 rounded-xl">
+                            <TrendingUp className="w-5 h-5" />
+                        </div>
+                        <h2 className="text-xl font-black text-slate-900 tracking-tight">Analytics</h2>
+                    </div>
+                    <button className="text-sm font-bold text-primary-600 hover:bg-primary-50 px-3 py-1.5 rounded-lg transition-colors">
+                        View All Reports
+                    </button>
+                    </div>
+
+                    <div className="flex flex-col md:flex-row min-h-[400px]">
+                    {/* LEFT: PRIORITY (Top Left in concept) */}
+                    <div className="flex-1 p-6 md:p-8 border-b md:border-b-0 md:border-r border-slate-100">
+                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-6 flex items-center gap-2">
+                            Overview
+                        </h3>
+                        <div className="grid grid-cols-2 gap-4 auto-rows-[160px]">
+                            {/* Count 1 */}
+                            <div className="bg-slate-50/50 hover:bg-white rounded-2xl p-5 border border-slate-100 hover:border-slate-200 shadow-sm transition-all group flex flex-col justify-between">
+                                <div className="flex justify-between items-start">
+                                    <div className="p-2 rounded-lg bg-green-100 text-green-600">
+                                        <Users className="w-5 h-5" />
+                                    </div>
+                                    <span className="text-xs font-bold px-2 py-1 rounded-full bg-green-100 text-green-700">+5%</span>
+                                </div>
+                                <div>
+                                    <p className="text-3xl font-black text-slate-900 tracking-tight">95%</p>
+                                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Attendance</p>
+                                </div>
+                            </div>
+
+                            {/* Chart 1 */}
+                            <div className="rounded-2xl overflow-hidden">
+                                <ChartCard chart={charts.find(c => c.id === 'grades') || charts[0]} onClick={handleChartClick} variant="bento" />
+                            </div>
+
+                            {/* Chart 2 */}
+                            <div className="col-span-2 rounded-2xl overflow-hidden">
+                                <ChartCard chart={charts.find(c => c.id === 'engagement') || charts[1]} onClick={handleChartClick} variant="bento" />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* RIGHT: SECONDARY (Top Right in concept) */}
+                    <div className="flex-1 p-6 md:p-8 bg-slate-50/30">
+                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-6 flex items-center gap-2">
+                            Performance & Habits
+                        </h3>
+                        <div className="grid grid-cols-2 gap-4 auto-rows-[160px]">
+                            {/* Chart 3 */}
+                            <div className="rounded-2xl overflow-hidden">
+                                <ChartCard chart={charts.find(c => c.id === 'assignments') || charts[2]} onClick={handleChartClick} variant="bento" />
+                            </div>
                             
-                            <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-50">
-                               <div className="flex -space-x-2">
-                                  {STUDENTS.slice(0,3).map(s => (
-                                      <img key={s.id} src={s.avatar} className="w-8 h-8 rounded-full border-2 border-white ring-1 ring-slate-100" />
-                                  ))}
-                                  <div className="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-bold text-slate-500 ring-1 ring-slate-100">+2</div>
-                               </div>
-                               <span className="text-xs font-bold text-primary-600 bg-primary-50 px-2 py-1 rounded-lg">Action Required</span>
+                            {/* Count 2 */}
+                            <div className="bg-white hover:bg-slate-50 rounded-2xl p-5 border border-slate-200 hover:border-slate-300 shadow-sm transition-all group flex flex-col justify-between">
+                                <div className="flex justify-between items-start">
+                                    <div className="p-2 rounded-lg bg-purple-100 text-purple-600">
+                                        <GraduationCap className="w-5 h-5" />
+                                    </div>
+                                    <span className="text-xs font-bold px-2 py-1 rounded-full bg-slate-100 text-slate-600">Avg</span>
+                                </div>
+                                <div>
+                                    <p className="text-3xl font-black text-slate-900 tracking-tight">B+</p>
+                                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Class Avg</p>
+                                </div>
                             </div>
-                        </div>
 
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-purple-900/5 hover:border-purple-200 transition-all cursor-pointer group relative">
-                             <div className="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
-                                <Calendar className="w-6 h-6" />
-                            </div>
-                            <h3 className="text-lg font-bold text-slate-900 mb-1">Create Course</h3>
-                            <p className="text-sm text-slate-500 font-medium">Plan for Spring Semester 2025</p>
-                            <div className="mt-8 pt-4 border-t border-slate-50 flex items-center gap-2 text-xs font-bold text-purple-600">
-                               <span className="bg-purple-50 px-2 py-1 rounded-lg">Draft</span>
+                            {/* Chart 4 */}
+                            <div className="col-span-2 rounded-2xl overflow-hidden">
+                                <ChartCard chart={charts.find(c => c.id === 'study_dist') || charts[4]} onClick={handleChartClick} variant="bento" />
                             </div>
                         </div>
                     </div>
-                </section>
-            )}
-
-            {/* CHARTS GRID SECTION WITH INSIDE SCROLL */}
-            <section className="animate-in slide-in-from-bottom-8 duration-700">
-                <div className="flex items-center justify-between mb-2">
-                     <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-                        Analytics Overview
-                        <span className="px-2 py-0.5 bg-slate-200 text-slate-600 rounded-full text-xs font-medium">{charts.length}</span>
-                     </h2>
-                </div>
-
-                {/* Fixed Height Scroll Container for Charts */}
-                {/* Added p-8 padding to ensure hover 'pop-out' effects don't get clipped by the scroll container */}
-                <div className="h-[550px] overflow-y-auto overflow-x-hidden p-8 -mx-8">
-                  {/* Reduced row height from 180px to 140px and gap from 6 to 4 for smaller cards */}
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-[140px] pt-12 pb-12">
-                      {charts.map((chart) => (
-                          <ChartCard 
-                              key={chart.id} 
-                              chart={chart} 
-                              onClick={handleChartClick} 
-                              variant="bento"
-                          />
-                      ))}
-                      
-                      {/* Add New Chart Placeholder */}
-                      <button className="h-full min-h-[140px] w-full rounded-3xl border-2 border-dashed border-slate-200 hover:border-primary-400 hover:bg-primary-50 flex flex-col items-center justify-center gap-3 text-slate-400 hover:text-primary-600 transition-all group bg-slate-50/50">
-                           <div className="w-10 h-10 rounded-full bg-white border border-slate-200 group-hover:border-primary-200 flex items-center justify-center group-hover:shadow-md transition-all">
-                               <MoreHorizontal className="w-5 h-5" />
-                           </div>
-                           <span className="text-xs font-bold">Add Chart</span>
-                      </button>
-                  </div>
-                </div>
+                    </div>
             </section>
 
           </div>

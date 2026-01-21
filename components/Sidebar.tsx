@@ -42,7 +42,6 @@ const Sidebar: React.FC<SidebarProps> = ({
           {/* Logo Removed */}
           <div className="flex flex-col">
             <h1 className="text-slate-900 text-lg font-black leading-tight tracking-tight">Student<span className="text-slate-400">.</span>Cat</h1>
-            <p className="text-slate-400 text-xs font-medium uppercase tracking-wider">Admin Console</p>
           </div>
         </div>
       </div>
