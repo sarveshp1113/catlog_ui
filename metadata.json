@@ -1,0 +1,5 @@
+{
+  "name": "StudentCat Dashboard",
+  "description": "A comprehensive education management dashboard featuring analytics, attendance tracking, query history, and an AI study buddy.",
+  "requestFramePermissions": []
+}
