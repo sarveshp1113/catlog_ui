@@ -216,3 +216,10 @@ export const DASHBOARD_CHARTS: ChartDef[] = [
     ]
   }
 ];
+
+// Replaced random logos with the specific shared logo brand asset
+// Using a placeholder URL that represents "Cat sitting backwards" style
+export const BRAND_LOGO = "https://cdn-icons-png.flaticon.com/512/3468/3468377.png"; 
+
+// If you want to use your local file, replace the string above with: "/student_cat_logo.png"
+// and place the file in your public folder.

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import QueryHistoryView from './components/QueryHistoryView';
 import ChatView from './components/ChatView';
 import { ViewState, QueryItem } from './types';
-import { INITIAL_QUERIES } from './constants';
+import { INITIAL_QUERIES, BRAND_LOGO } from './constants';
 import { Menu } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -75,9 +75,7 @@ const App: React.FC = () => {
         {/* Mobile Header (Only visible on small screens) */}
         <div className="lg:hidden px-4 py-3 bg-white border-b border-slate-200 flex justify-between items-center z-20">
            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-slate-900 overflow-hidden flex items-center justify-center">
-                  <img src="https://media.giphy.com/media/GeimqsH0TLDt4tScGw/giphy.gif" alt="Logo" className="w-full h-full object-cover scale-110" />
-              </div>
+              {/* Logo Removed */}
               <span className="font-bold text-slate-900">StudentCat</span>
            </div>
            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>

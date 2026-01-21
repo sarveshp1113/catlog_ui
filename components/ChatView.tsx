@@ -19,12 +19,10 @@ const ChatView: React.FC = () => {
       
       {/* Sub Sidebar */}
       <div className="w-64 bg-white border-r border-slate-200 hidden lg:flex flex-col p-4 gap-2">
+         {/* Simplified branding here to avoid logo duplication with main sidebar */}
          <div className="flex items-center gap-3 px-3 py-4 mb-2">
-            <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
-              <img src="https://media.giphy.com/media/GeimqsH0TLDt4tScGw/giphy.gif" className="w-full h-full object-cover scale-110" />
-            </div>
             <div>
-              <h2 className="font-bold text-slate-900 leading-tight">StudentCat</h2>
+              <h2 className="font-bold text-slate-900 leading-tight text-lg">StudentCat</h2>
               <p className="text-xs text-slate-500">Your Study Buddy</p>
             </div>
          </div>

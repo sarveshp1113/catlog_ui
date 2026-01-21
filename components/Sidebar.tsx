@@ -7,6 +7,7 @@ import {
   MessageSquare
 } from 'lucide-react';
 import { ViewState, QueryItem } from '../types';
+import { BRAND_LOGO } from '../constants';
 
 interface SidebarProps {
   activeView: ViewState;
@@ -35,26 +36,10 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <aside className="hidden lg:flex w-72 flex-col border-r border-slate-200 bg-white h-screen sticky top-0 shadow-[4px_0_24px_rgba(0,0,0,0.02)] z-30">
       
-      {/* Inject Custom Animation for Logo */}
-      <style>{`
-        @keyframes float-random {
-          0% { transform: translate(0, 0) rotate(0deg); }
-          25% { transform: translate(2px, -3px) rotate(1deg); }
-          50% { transform: translate(-1px, 1px) rotate(-1deg); }
-          75% { transform: translate(-2px, -2px) rotate(0.5deg); }
-          100% { transform: translate(0, 0) rotate(0deg); }
-        }
-        .animate-cat {
-          animation: float-random 4s ease-in-out infinite;
-        }
-      `}</style>
-      
       {/* 1. Brand Header */}
       <div className="p-6 pb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center overflow-hidden border border-slate-100 shadow-sm shrink-0 animate-cat">
-             <img src="https://media.giphy.com/media/GeimqsH0TLDt4tScGw/giphy.gif" alt="Logo" className="w-full h-full object-cover scale-110" />
-          </div>
+          {/* Logo Removed */}
           <div className="flex flex-col">
             <h1 className="text-slate-900 text-lg font-black leading-tight tracking-tight">Student<span className="text-slate-400">.</span>Cat</h1>
             <p className="text-slate-400 text-xs font-medium uppercase tracking-wider">Admin Console</p>
